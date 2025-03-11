@@ -66,7 +66,8 @@ main#principal {
     color: white;
     border-radius: 7px;
     font-size: 30px;
-    direction: rtl;
+    direction: ltr;
+    text-align: right;
 }
 
 input#tela::-webkit-outer-spin-button, input#tela::-webkit-inner-spin-button {

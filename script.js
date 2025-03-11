@@ -21,9 +21,22 @@ const multi = document.getElementById("multi")
 
 // Resto
 const clear_empty = document.getElementById("ce")
+const clear_all = document.getElementById('clear')
+const mem = document.getElementById("memory")
+const arredondar = document.getElementById("arredondamento")
+const virgula = document.getElementById("virgula")
 
-// res
+// Gerenciamento
+const memoria = []
+const numeros_Array = ["zero", "um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove"]
+
+// resultado
 const igual = document.getElementById('res')
+
+zero.onclick = function () {
+    tela.value += 0
+    tela.focus()
+}
 
 um.onclick = function () {
     tela.value += 1
@@ -89,32 +102,57 @@ multi.onclick = function () {
     tela.focus()
 }
 
+clear_empty.onclick = function () {
+    let valor = tela.value;
+    let array = []
+    for (let i in valor) {
+        if (Number(i) !== valor.length - 1) {
+            array.push(valor[i])
+        }
+    }
+    tela.value = array.join('')
+}
+
+clear_all.onclick = function () {
+    tela.value = ''
+}
+
+mem.onclick = function () {
+    memoria.push(tela.value)
+}
+
+arredondar.onclick = function () {
+    tela.value = Math.round(tela.value)
+}
+
+virgula.onclick = function () {
+    tela.value += '.'
+}
+
 igual.onclick = function () {
     if (tela.value.length !== 0 && is_number(tela.value) && !operator_check(tela.value)) {
         tela.value = eval(tela.value)
     } else {
-        window.alert("errou, nobre!")
+        if (memoria.length > 0) {
+            tela.value = memoria[memoria.length - 1]
+        } else {
+        tela.value = ''
+        window.alert("[ERRO] insira as informações corretas e tente novamente!")
+        }
     }
 }
 
 let is_number = function (target) {
-    let alfa = 'abcdefghijklmnopqrstuvwxyz;.?^~|%!@#$¨&_´`"'
-    for (let i of target) {
-    if (alfa.indexOf(i) !== -1) {
-       return false
-    }
-    }
+    let numbers = '0123456789.+-/*'
+    for (let c of target) {
+        if (numbers.indexOf(c) === -1) {
+            return false
+        }
+}
     return true;
 }
 
 let operator_check = function (target) {
-    const regex = /([+-/*])\1+/;
+    const regex = /([+-/*,])\1+/;
     return regex.test(target);
 }
-
-
-// const clear_entry = document.getElementById("ce")
-
-// clear_entry.onclick = function () {
-//     window.alert("hello, world!")
-// }
