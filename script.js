@@ -98,7 +98,7 @@ igual.onclick = function () {
 }
 
 let is_number = function (target) {
-    let alfa = 'abcdefghijklmnopqrstuvwxyz;.?^~|%!@#$¨&'
+    let alfa = 'abcdefghijklmnopqrstuvwxyz;.?^~|%!@#$¨&_´`"'
     for (let i of target) {
     if (alfa.indexOf(i) !== -1) {
        return false
